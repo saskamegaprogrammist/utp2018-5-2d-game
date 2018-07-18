@@ -1,5 +1,136 @@
 'use strict';
 
+//dungeon_1
+const barrier_walls_of_the_dungeon_1 = {
+
+    x: 0,
+    y: 0,
+    width: 575,
+    height: 575
+}
+
+const barriers_of_the_dungeon_1 = [
+
+    barrier_walls_of_the_dungeon_1
+]
+
+
+
+
+
+
+
+
+
+
+//dungeon_2
+const barrier_walls_of_the_dungeon_2 = {
+
+    x: 0,
+    y: 0,
+    width: 127,
+    height: 485
+}
+
+const barriers_of_the_dungeon_2 = [
+
+    barrier_walls_of_the_dungeon_2
+]
+
+
+
+
+
+
+
+
+
+
+//dungeon_3
+const barrier_walls_of_the_dungeon_3_1 = {
+
+    x: 0,
+    y: 0,
+    width: 135,
+    height: 230
+}
+
+const barrier_walls_of_the_dungeon_3_2 = {
+
+    x: 0,
+    y: 700,
+    width: 325,
+    height: 68
+}
+
+const barrier_walls_of_the_dungeon_3_3 = {
+
+    x: 700,
+    y: 0,
+    width: 68,
+    height: 485
+}
+
+const barriers_of_the_dungeon_3 = [
+
+    barrier_walls_of_the_dungeon_3_1,
+    barrier_walls_of_the_dungeon_3_2,
+    barrier_walls_of_the_dungeon_3_3
+]
+
+
+
+
+
+
+
+
+
+//dungeon_4
+const barrier_walls_of_the_dungeon_4_1 = {
+
+    x: 0,
+    y: 130,
+    width: 60,
+    height: 158
+}
+
+const barrier_walls_of_the_dungeon_4_2 = {
+
+    x: 135,
+    y: 130,
+    width: 170,
+    height: 158
+}
+
+const barrier_walls_of_the_dungeon_4_3 = {
+
+    x: 325,
+    y: 0,
+    width: 443,
+    height: 220
+}
+
+const barrier_walls_of_the_dungeon_4_4 = {
+
+    x: 0,
+    y: 700,
+    width: 768,
+    height: 5
+}
+
+const barriers_of_the_dungeon_4 = [
+
+    barrier_walls_of_the_dungeon_4_1,
+    barrier_walls_of_the_dungeon_4_2,
+    barrier_walls_of_the_dungeon_4_3,
+    barrier_walls_of_the_dungeon_4_4
+]
+
+
+
+
+//town
 const barrier_start = {
 
     x: 630,
@@ -55,14 +186,6 @@ const barrier_armories = {
     width: 132,
     height: 150
 }
-
-/* const barrier_walls_1 = {
-
-    x: 192,
-    y: 635,
-    width: 80,
-    height: 5
-} */
 
 const barrier_walls_1 = {
 
@@ -128,54 +251,56 @@ const barrier_tavern_4 = {
     height: 55
 }
 
-const barriers_of_the_town = [barrier_start,
-                            barrier_right_forest,
-                            barrier_down_forest_1,
-                            barrier_down_forest_2,
-                            barrier_farm,
-                            barrier_small_house,
-                            barrier_armories,
-                            barrier_walls_1,
-                            barrier_walls_2,
-                            barrier_walls_3,
-                            barrier_market,
-                            barrier_tavern_1,
-                            barrier_tavern_2,
-                            barrier_tavern_3,
-                            barrier_tavern_4
-                        ];
+const barriers_of_the_town = [
 
-const len = barriers_of_the_town.length;
+    barrier_start,
+    barrier_right_forest,
+    barrier_down_forest_1,
+    barrier_down_forest_2,
+    barrier_farm,
+    barrier_small_house,
+    barrier_armories,
+    barrier_walls_1,
+    barrier_walls_2,
+    barrier_walls_3,
+    barrier_market,
+    barrier_tavern_1,
+    barrier_tavern_2,
+    barrier_tavern_3,
+    barrier_tavern_4
+]
 
-function collision(hero) {
+
+function collision(barriers) {
 
     let distX = 0;
     let distY = 0;
+    const len = barriers.length;
 
     for (let i = 0; i < len; i++) {
 
         distX = Math.abs(hero.x + hero.radiusW -
-            barriers_of_the_town[i].x - barriers_of_the_town[i].width / 2);
+            barriers[i].x - barriers[i].width / 2);
         distY = Math.abs(hero.y + hero.radiusH -
-            barriers_of_the_town[i].y - barriers_of_the_town[i].height / 2);
-    
-        if ((distX <= (barriers_of_the_town[i].width / 2) + hero.radiusW) &&
-            (distY <= (barriers_of_the_town[i].height / 2) + hero.radiusH)) {
-    
+            barriers[i].y - barriers[i].height / 2);
+
+        if ((distX <= (barriers[i].width / 2) + hero.radiusW) &&
+            (distY <= (barriers[i].height / 2) + hero.radiusH)) {
+
             if (hero.y + 2 * hero.radiusH <
-                (barriers_of_the_town[i].y + 5)) {
-    
+                (barriers[i].y + 5)) {
+
                 hero.y -= hero.dy;
             } else if (hero.x >
-                (barriers_of_the_town[i].x + barriers_of_the_town[i].width - 5)) {
-    
+                (barriers[i].x + barriers[i].width - 5)) {
+
                 hero.x += hero.dx;
-            } else if (hero.x + 2 * hero.radiusW < barriers_of_the_town[i].x + 5) {
-    
+            } else if (hero.x + 2 * hero.radiusW < barriers[i].x + 5) {
+
                 hero.x -= hero.dx;
             } else if (hero.y <
-                barriers_of_the_town[i].y + barriers_of_the_town[i].height) {
-    
+                barriers[i].y + barriers[i].height) {
+
                 hero.y += hero.dy;
             }
         }
@@ -253,10 +378,56 @@ function collision_with_fence_in_the_town() {
 
 
 
+//transition
+const dungeon_2_from_dungeon_1 = {
 
+    x: 648,
+    y: 0,
+    width: 48,
+    height: 5
+}
 
+const dungeon_1_from_dungeon_2 = {
 
-const dungeon = {
+    x: 648,
+    y: 763,
+    width: 48,
+    height: 5
+}
+
+const dungeon_2_from_dungeon_3 = {
+
+    x: 763,
+    y: 648,
+    width: 5,
+    height: 48
+}
+
+const dungeon_3_from_dungeon_2 = {
+
+    x: 0,
+    y: 648,
+    width: 5,
+    height: 48
+}
+
+const dungeon_3_from_dungeon_4 = {
+
+    x: 763,
+    y: 520,
+    width: 5,
+    height: 48
+}
+
+const dungeon_4_from_dungeon_3 = {
+
+    x: 0,
+    y: 520,
+    width: 5,
+    height: 48
+}
+
+const dungeon_4_from_town = {
 
     x: 690,
     y: 740,
@@ -264,375 +435,53 @@ const dungeon = {
     height: 5
 }
 
-function transition(hero, trans) {
+const town = {
+
+    x: 60,
+    y: 0,
+    width: 48,
+    height: 5
+}
+
+function transition(trans) {
 
     const distX = Math.abs(hero.x + hero.radiusW -
         trans.x - trans.width / 2);
     const distY = Math.abs(hero.y + hero.radiusH -
         trans.y - trans.height / 2);
 
-    if ((distX <= (trans.width / 2) + hero.radiusW) &&
-        (distY <= (trans.height / 2) + hero.radiusH)) {
-
-        return true;
-    } else {
-
-        return false;
-    }
+    return ((distX <= (trans.width / 2) + hero.radiusW) &&
+        (distY <= (trans.height / 2) + hero.radiusH));
 }
 
-function dungeon_transition(hero) {
-
-    if (transition(hero, dungeon)) {
-        return true;
-    }
+function dungeon_2_from_dungeon_1_transition() {
+    return transition(dungeon_2_from_dungeon_1);
 }
 
-/*
-function collision(hero) {
-
-    //for barrier_start
-    let distX = Math.abs(hero.x + hero.radius -
-        barrier_start.x - barrier_start.width / 2);
-    let distY = Math.abs(hero.y + hero.radius -
-        barrier_start.y - barrier_start.height / 2);
-
-    if ((distX <= (barrier_start.width / 2) + hero.radius) &&
-        (distY <= (barrier_start.height / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            (barrier_start.y + 5)) {
-
-            hero.y -= hero.dy;
-        }
-    }
-
-    //for barrier_right_forest
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_right_forest.x - barrier_right_forest.width / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_right_forest.y - barrier_right_forest.height / 2);
-
-    if ((distX <= (barrier_right_forest.width / 2) + hero.radius) &&
-        (distY <= (barrier_right_forest.height / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            (barrier_right_forest.y + 5)) {
-
-            hero.y -= hero.dy;
-        } else if (hero.x >
-            (barrier_right_forest.x + barrier_right_forest.width - 5)) {
-
-            hero.x += hero.dx;
-        } else if ((hero.x + 2 * hero.radius < barrier_right_forest.x + 5) &&
-            (hero.y + 2 * hero.radius < barrier_right_forest.y + barrier_right_forest.height + 20)) {
-
-            hero.x -= hero.dx;
-        } else if (hero.y + hero.radius <
-            barrier_right_forest.y + barrier_right_forest.height) {
-
-            hero.y += hero.dy;
-        }
-    }
-
-    //for barrier_down_forest
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_down_forest.x1 - barrier_down_forest.width1 / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_down_forest.y1 - barrier_down_forest.height1 / 2);
-
-    if ((distX <= (barrier_down_forest.width1 / 2) + hero.radius) &&
-        (distY <= (barrier_down_forest.height1 / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            (barrier_down_forest.y1 + 5)) {
-
-            hero.y -= hero.dy;
-        } else if (hero.x >
-            (barrier_down_forest.x1 + barrier_down_forest.width1 - 5)) {
-
-            hero.x += hero.dx;
-        } else if (hero.x + 2 * hero.radius <
-            (barrier_down_forest.x1 + 5)) {
-
-            hero.x -= hero.dx;
-        }
-    }
-
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_down_forest.x2 - barrier_down_forest.width2 / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_down_forest.y2 - barrier_down_forest.height2 / 2);
-
-    if ((distX <= (barrier_down_forest.width2 / 2) + hero.radius) &&
-        (distY <= (barrier_down_forest.height2 / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            (barrier_down_forest.y2 + 5)) {
-
-            hero.y -= hero.dy;
-        } else if (hero.x >
-            (barrier_down_forest.x2 + barrier_down_forest.width2 - 5)) {
-
-            hero.x += hero.dx;
-        } else if (hero.x + 2 * hero.radius <
-            (barrier_down_forest.x2 + 5)) {
-
-            hero.x -= hero.dx;
-        }
-    }
-
-    //for barrier_farm
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_farm.x - barrier_farm.width / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_farm.y - barrier_farm.height / 2);
-
-    if ((distX <= (barrier_farm.width / 2) + hero.radius) &&
-        (distY <= (barrier_farm.height / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            barrier_farm.y + 5) {
-
-            hero.y -= hero.dy;
-        } else if (hero.x >
-            (barrier_farm.x + barrier_farm.width - 5)) {
-
-            hero.x += hero.dx;
-        }
-    }
-
-    //for barrier_small_house
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_small_house.x1 - barrier_small_house.width1 / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_small_house.y1 - barrier_small_house.height1 / 2);
-
-    if ((distX <= (barrier_small_house.width1 / 2) + hero.radius) &&
-        (distY <= (barrier_small_house.height1 / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            (barrier_small_house.y1 + 5)) {
-
-            hero.y -= hero.dy;
-        } else if ((hero.x >
-            (barrier_small_house.x1 + barrier_small_house.width1 - 5) &&
-            (hero.y + 2 * hero.radius < barrier_small_house.y1 + barrier_small_house.height1 + 20))) {
-
-            hero.x += hero.dx;
-        } else if (hero.y + hero.radius <
-            barrier_small_house.y1 + barrier_small_house.height1) {
-
-            hero.y += hero.dy;
-        }
-    }
-
-    //for barrier_armories
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_armories.x - barrier_armories.width / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_armories.y - barrier_armories.height / 2);
-
-    if ((distX <= (barrier_armories.width / 2) + hero.radius) &&
-        (distY <= (barrier_armories.height / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            (barrier_armories.y + 5)) {
-
-            hero.y -= hero.dy;
-        } else if (hero.x >
-            (barrier_armories.x + barrier_armories.width - 5)) {
-
-            hero.x += hero.dx;
-        }
-    }
-
-    //for barrier_walls
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_walls.x1 - barrier_walls.width1 / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_walls.y1 - barrier_walls.height1 / 2);
-
-    if ((distX <= (barrier_walls.width1 / 2) + hero.radius) &&
-        (distY <= (barrier_walls.height1 / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            (barrier_walls.y1 + 5)) {
-
-            hero.y -= hero.dy;
-        }
-    }
-
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_walls.x2 - barrier_walls.width2 / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_walls.y2 - barrier_walls.height2 / 2);
-
-    if ((distX <= (barrier_walls.width2 / 2) + hero.radius) &&
-        (distY <= (barrier_walls.height2 / 2) + hero.radius)) {
-
-        if (hero.x >
-            (barrier_walls.x2 + barrier_walls.width2 - 5)) {
-
-            hero.x += hero.dx;
-        } else if (hero.y <
-            barrier_walls.y2 + barrier_walls.height2) {
-
-            hero.y += hero.dy;
-        }
-    }
-
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_walls.x3 - barrier_walls.width3 / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_walls.y3 - barrier_walls.height3 / 2);
-
-    if ((distX <= (barrier_walls.width3 / 2) + hero.radius) &&
-        (distY <= (barrier_walls.height3 / 2) + hero.radius)) {
-
-        if (hero.x >
-            (barrier_walls.x3 + barrier_walls.width3 - 5)) {
-
-            hero.x += hero.dx;
-        } else if (hero.y <
-            barrier_walls.y3 + barrier_walls.height3) {
-
-            hero.y += hero.dy;
-        }
-    }
-
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_walls.x4 - barrier_walls.width4 / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_walls.y4 - barrier_walls.height4 / 2);
-
-    if ((distX <= (barrier_walls.width4 / 2) + hero.radius) &&
-        (distY <= (barrier_walls.height4 / 2) + hero.radius)) {
-
-        if (hero.x + 2 * hero.radius <
-            (barrier_walls.x4 + 5)) {
-
-            hero.x -= hero.dx;
-        } else if (hero.y <
-            barrier_walls.y4 + barrier_walls.height4) {
-
-            hero.y += hero.dy;
-        }
-    }
-
-    //for barrier_market
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_market.x - barrier_market.width / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_market.y - barrier_market.height / 2);
-
-    if ((distX <= (barrier_market.width / 2) + hero.radius) &&
-        (distY <= (barrier_market.height / 2) + hero.radius)) {
-
-        if ((hero.x >
-            (barrier_market.x + barrier_market.width - 5)) &&
-            (hero.y + 2 * hero.radius <
-                barrier_market.y + barrier_market.height + 20)) {
-
-            hero.x += hero.dx;
-        } else if (hero.y + hero.radius <
-            barrier_market.y + barrier_market.height) {
-
-            hero.y += hero.dy;
-        }
-    }
-
-    //for barrier_tavern
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_tavern.x1 - barrier_tavern.width1 / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_tavern.y1 - barrier_tavern.height1 / 2);
-
-    if ((distX <= (barrier_tavern.width1 / 2) + hero.radius) &&
-        (distY <= (barrier_tavern.height1 / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            (barrier_tavern.y1 + 5)) {
-
-            hero.y -= hero.dy;
-        } else if (hero.x + 2 * hero.radius < barrier_tavern.x1 + 5) {
-
-            hero.x -= hero.dx;
-        } else if (hero.y <
-            barrier_tavern.y1 + barrier_tavern.height1) {
-
-            hero.y += hero.dy;
-        }
-    }
-
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_tavern.x2 - barrier_tavern.width2 / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_tavern.y2 - barrier_tavern.height2 / 2);
-
-    if ((distX <= (barrier_tavern.width2 / 2) + hero.radius) &&
-        (distY <= (barrier_tavern.height2 / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            (barrier_tavern.y2 + 5)) {
-
-            hero.y -= hero.dy;
-        } else if (hero.x + 2 * hero.radius < barrier_tavern.x2 + 5) {
-
-            hero.x -= hero.dx;
-        } else if (hero.y <
-            barrier_tavern.y2 + barrier_tavern.height2) {
-
-            hero.y += hero.dy;
-        }
-    }
-
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_tavern.x3 - barrier_tavern.width3 / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_tavern.y3 - barrier_tavern.height3 / 2);
-
-    if ((distX <= (barrier_tavern.width3 / 2) + hero.radius) &&
-        (distY <= (barrier_tavern.height3 / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            (barrier_tavern.y3 + 5)) {
-
-            hero.y -= hero.dy;
-        } else if (hero.x + 2 * hero.radius < barrier_tavern.x3 + 5) {
-
-            hero.x -= hero.dx;
-        } else if (hero.y <
-            barrier_tavern.y3 + barrier_tavern.height3) {
-
-            hero.y += hero.dy;
-        }
-    }
-
-    distX = Math.abs(hero.x + hero.radius -
-        barrier_tavern.x4 - barrier_tavern.width4 / 2);
-    distY = Math.abs(hero.y + hero.radius -
-        barrier_tavern.y4 - barrier_tavern.height4 / 2);
-
-    if ((distX <= (barrier_tavern.width4 / 2) + hero.radius) &&
-        (distY <= (barrier_tavern.height4 / 2) + hero.radius)) {
-
-        if (hero.y + 2 * hero.radius <
-            (barrier_tavern.y4 + 5)) {
-
-            hero.y -= hero.dy;
-        } else if (hero.x + 2 * hero.radius < barrier_tavern.x4 + 5) {
-
-            hero.x -= hero.dx;
-        } else if (hero.x >
-            (barrier_tavern.x4 + barrier_tavern.width4 - 5)) {
-
-            hero.x += hero.dx;
-        } else if (hero.y <
-            barrier_tavern.y4 + barrier_tavern.height4) {
-
-            hero.y += hero.dy;
-        }
-    }
+function dungeon_1_from_dungeon_2_transition() {
+    return transition(dungeon_1_from_dungeon_2);
 }
-*/
+
+function dungeon_2_from_dungeon_3_transition() {
+    return transition(dungeon_2_from_dungeon_3);
+}
+
+function dungeon_3_from_dungeon_2_transition() {
+    return transition(dungeon_3_from_dungeon_2);
+}
+
+function dungeon_3_from_dungeon_4_transition() {
+    return transition(dungeon_3_from_dungeon_4);
+}
+
+function dungeon_4_from_dungeon_3_transition() {
+    return transition(dungeon_4_from_dungeon_3);
+}
+
+function dungeon_4_from_town_transition() {
+    return transition(dungeon_4_from_town);
+}
+
+function town_transition() {
+    return transition(town);
+}

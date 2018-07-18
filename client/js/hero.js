@@ -3,9 +3,6 @@
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
-const decoration = new Image();
-decoration.src = "../design/map/decoration.png";
-
 let hero = {
 
     x: 350,
@@ -17,39 +14,64 @@ let hero = {
     right_pressed: false,
     left_pressed: false,
     up_pressed: false,
-    down_pressed: false
-};
+    down_pressed: false,
+    inventory: false
+}
 
 const hero_icon = new Image();
 hero_icon.src = "../design/hero/hero-64 (1).png";
 
-//for hero
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(e) {
 
+    //movement
     if ((e.keyCode === 39) || (e.keyCode === 68)) {
         hero.right_pressed = true;
-    } else if ((e.keyCode === 37) || (e.keyCode === 65)) {
+    }
+    
+    if ((e.keyCode === 37) || (e.keyCode === 65)) {
         hero.left_pressed = true;
-    } else if ((e.keyCode === 38) || (e.keyCode === 87)) {
+    }
+    
+    if ((e.keyCode === 38) || (e.keyCode === 87)) {
         hero.up_pressed = true;
-    } else if ((e.keyCode === 40) || (e.keyCode === 83)) {
+    }
+    
+    if ((e.keyCode === 40) || (e.keyCode === 83)) {
         hero.down_pressed = true;
+    }
+
+
+    //inventory
+    if (e.keyCode === 9) {
+        hero.inventory = true;
     }
 }
 
 function keyUpHandler(e) {
 
+    //movement
     if ((e.keyCode === 39) || (e.keyCode === 68)) {
         hero.right_pressed = false;
-    } else if ((e.keyCode === 37) || (e.keyCode === 65)) {
+    }
+
+    if ((e.keyCode === 37) || (e.keyCode === 65)) {
         hero.left_pressed = false;
-    } else if ((e.keyCode === 38) || (e.keyCode === 87)) {
+    }
+    
+    if ((e.keyCode === 38) || (e.keyCode === 87)) {
         hero.up_pressed = false;
-    } else if ((e.keyCode === 40) || (e.keyCode === 83)) {
+    }
+    
+    if ((e.keyCode === 40) || (e.keyCode === 83)) {
         hero.down_pressed = false;
+    }
+
+    //inventory
+    if (e.keyCode === 9) {
+        hero.inventory = false;
     }
 }
 
@@ -76,4 +98,4 @@ function drawHero() {
     context.drawImage(hero_icon, hero.x, hero.y);
 }
 
-const intervalID = setInterval(drawTown, 10);
+let intervalID = setInterval(drawDungeon_1, 10);
