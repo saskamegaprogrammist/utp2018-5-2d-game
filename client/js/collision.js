@@ -288,11 +288,11 @@ function collision(barriers) {
             (distY <= (barriers[i].height / 2) + hero.radiusH)) {
 
             if (hero.y + 2 * hero.radiusH <
-                (barriers[i].y + 10)) {
+                (barriers[i].y + 5)) {
 
                 hero.y -= hero.dy;
             } else if (hero.x >
-                (barriers[i].x + barriers[i].width - 10)) {
+                (barriers[i].x + barriers[i].width - 5)) {
 
                 hero.x += hero.dx;
             } else if (hero.x + 2 * hero.radiusW < barriers[i].x + 10) {
@@ -344,7 +344,7 @@ function collision_with_fence_in_the_town() {
         (distY <= (barrier_fence.height1 / 2) + hero.radiusH)) {
 
         if (hero.y + 2 * hero.radiusH <
-            (barrier_fence.y1 + 10)) {
+            (barrier_fence.y1 + 5)) {
 
             hero.y -= hero.dy;
         } else if (hero.y + hero.radiusH <
