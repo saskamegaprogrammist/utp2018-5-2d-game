@@ -11,15 +11,16 @@ function drawDungeon_1() {
         clearInterval(intervalID);
 
         hero.x = 650;
-        hero.y = 700;
+        hero.y = 690;
 
-        intervalID = setInterval(drawDungeon_2, 10);
+        intervalID = setInterval(drawDungeon_2, speed);
+        return;
     }
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(dungeon_image_1, 0, 0);
     drawHero();
-    drawInventory();
+    drawConditionOfHero();
 
     /* context.beginPath();
     context.rect(648, 0, 48, 5);
@@ -58,7 +59,8 @@ function drawDungeon_2() {
         hero.x = 710;
         hero.y = 625;
 
-        intervalID = setInterval(drawDungeon_3, 10);
+        intervalID = setInterval(drawDungeon_3, speed);
+        return;
     } else if (dungeon_1_from_dungeon_2_transition()) {
 
         clearInterval(intervalID);
@@ -66,7 +68,8 @@ function drawDungeon_2() {
         hero.x = 650;
         hero.y = 7;
 
-        intervalID = setInterval(drawDungeon_1, 10);
+        intervalID = setInterval(drawDungeon_1, speed);
+        return;
     }
 
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -112,7 +115,7 @@ function drawDungeon_3() {
         hero.x = 710;
         hero.y = 490;
 
-        intervalID = setInterval(drawDungeon_4, 10);
+        intervalID = setInterval(drawDungeon_4, speed);
         return;
     } else if (dungeon_2_from_dungeon_3_transition()) {
 
@@ -121,7 +124,7 @@ function drawDungeon_3() {
         hero.x = 7;
         hero.y = 625;
 
-        intervalID = setInterval(drawDungeon_2, 10);
+        intervalID = setInterval(drawDungeon_2, speed);
         return;
     }
 
@@ -166,7 +169,7 @@ function drawDungeon_4() {
         hero.x = 665;
         hero.y = 635;
 
-        intervalID = setInterval(drawTown, 10);
+        intervalID = setInterval(drawTown, speed);
         return;
     } else if (dungeon_3_from_dungeon_4_transition()) {
 
@@ -175,7 +178,7 @@ function drawDungeon_4() {
         hero.x = 7;
         hero.y = 490;
 
-        intervalID = setInterval(drawDungeon_3, 10);
+        intervalID = setInterval(drawDungeon_3, speed);
         return;
     }
 
@@ -221,7 +224,7 @@ function drawTown() {
         hero.x = 60;
         hero.y = 7;
 
-        intervalID = setInterval(drawDungeon_4, 10);
+        intervalID = setInterval(drawDungeon_4, speed);
         return;
     }
 
@@ -266,8 +269,60 @@ function drawTown() {
 
 
 
-//inventory
 
+//condition of hero
+function drawConditionOfHero() {
+
+    if (hero.condition) {
+        
+        drawInventory();
+        drawHealth();
+    }
+}
+
+
+
+
+
+
+
+
+//inventory
+const inventory_image = new Image();
+inventory_image.src = "../design/inventory/inventory_test.png";
+
+function drawInventory() {
+
+    context.drawImage(inventory_image, 0, 500);
+}
+
+
+
+
+
+
+
+
+
+//health
+function drawHealth() {
+
+    context.beginPath();
+    context.lineWidth = 30;
+    context.moveTo(hero.health_x1, hero.health_y);
+    context.lineTo(hero.health_x2, hero.health_y);
+    context.strokeStyle = "red";
+    context.lineCap = "round";
+    context.stroke();
+    context.closePath();
+}
+
+
+
+
+
+
+/*
 const cell_for_inventory = {
 
     width: 150,
@@ -324,9 +379,5 @@ function drawInventory() {
     if (hero.inventory) {
         grid();
     }
-
-    /* if (!hero.inventory) {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-    } */
 }
-
+*/
