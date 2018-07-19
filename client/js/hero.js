@@ -3,7 +3,7 @@
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
-const speed = 100;
+const speed = 10;
 
 let hero = {
 
@@ -11,8 +11,8 @@ let hero = {
     y: 640,
     radiusW: 21.5,
     radiusH: 32,
-    dx: 8,
-    dy: 8,
+    dx: 1,
+    dy: 1,
 
     right_pressed: false,
     left_pressed: false,
@@ -33,19 +33,25 @@ animate['hero'] = {
         'el'    : null,
         'src'   : "../design/hero/animation-hero-64px.png",
         'currentFrame'  : 0, 
-        'frames' : 7
+        'frames' : 7,
+	'step' : 0,
+	'speed' : 8
     },
     'to_the_right': {
                         'el'    : null,
                         'src'   : "../design/hero/animation-hero-64px-right.png",
-						'currentFrame': 0,
-						'frames' : 7                        
+			'currentFrame': 0,
+			'frames' : 7,
+	    		'step' : 0,
+	    		'speed' : 8
     },
 	'stand' : {
-				'el'    : null,
+			'el'    : null,
                         'src'   : "../design/hero/hero-64 (1).png",
-						'currentFrame': 0,
-						'frames' : 0  
+			'currentFrame': 0,
+			'frames' : 0,
+			'step' : 0,
+			'speed' : 10
 	}		
 };
     
@@ -129,17 +135,21 @@ function drawHero() {
         hero.y += hero.dy;
     }
 
-     if (hero.left_pressed) {
+    if (hero.left_pressed) {
 	context.drawImage(animate['hero']['to_the_left'].el, 
 					Math.round(hero.radiusW*2*animate['hero']['to_the_left'].currentFrame), 0, 
 					hero.radiusW*2, hero.radiusH*2, 
 					hero.x, hero.y,
 					hero.radiusW*2, hero.radiusH*2);
-	if (animate['hero']['to_the_left'].currentFrame == animate['hero']['to_the_left'].frames) {
-        animate['hero']['to_the_left'].currentFrame = 0;
-     } else {
-        animate['hero']['to_the_left'].currentFrame++;
-     }
+	if (animate['hero']['to_the_left'].step >= animate['hero']['to_the_left'].speed) {
+		if (animate['hero']['to_the_left'].currentFrame == animate['hero']['to_the_left'].frames) {
+			animate['hero']['to_the_left'].currentFrame = 0;
+		 } else {
+			animate['hero']['to_the_left'].currentFrame++;
+			animate['hero']['to_the_left'].step = 0;
+		 }
+		}
+		else animate['hero']['to_the_left'].step++;
 	}
 	else if (hero.right_pressed) {
 		context.drawImage(animate['hero']['to_the_right'].el, 
@@ -147,12 +157,17 @@ function drawHero() {
 					hero.radiusW*2, hero.radiusH*2, 
 					hero.x, hero.y,
 					hero.radiusW*2, hero.radiusH*2);
-	if (animate['hero']['to_the_right'].currentFrame == animate['hero']['to_the_right'].frames) {
-        animate['hero']['to_the_right'].currentFrame = 0;
-     } else {
-        animate['hero']['to_the_right'].currentFrame++;
-     }
+	if (animate['hero']['to_the_right'].step >= animate['hero']['to_the_right'].speed) {				
+		if (animate['hero']['to_the_right'].currentFrame == animate['hero']['to_the_right'].frames) {
+			animate['hero']['to_the_right'].currentFrame = 0;
+		 } else {
+			animate['hero']['to_the_right'].currentFrame++;
+			animate['hero']['to_the_right'].step = 0;
+		 }
+		}
+		else animate['hero']['to_the_right'].step++;
 	}
+
 	else {
 		context.drawImage(animate['hero']['stand'].el, 
 						0, 0,
