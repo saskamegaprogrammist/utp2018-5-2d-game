@@ -7,9 +7,9 @@ const speed = 100;
 
 let hero = {
 
-    x: 300,
-    y: 600,
-    radiusW: 24,
+    x: 256,
+    y: 640,
+    radiusW: 21.5,
     radiusH: 32,
     dx: 8,
     dy: 8,
@@ -26,8 +26,34 @@ let hero = {
     health_x2: 500
 }
 
-const hero_icon = new Image();
-hero_icon.src = "../design/hero/hero-64 (1).png";
+let animate = {};
+
+animate['hero'] = {
+    'to_the_left': {
+        'el'    : null,
+        'src'   : "../design/hero/animation-hero-64px.png",
+        'currentFrame'  : 0, 
+        'frames' : 7
+    },
+    'to_the_right': {
+                        'el'    : null,
+                        'src'   : "../design/hero/animation-hero-64px-right.png",
+						'currentFrame': 0,
+						'frames' : 7                        
+    },
+	'stand' : {
+				'el'    : null,
+                        'src'   : "../design/hero/hero-64 (1).png",
+						'currentFrame': 0,
+						'frames' : 0  
+	}		
+};
+    
+ for (var i in animate['hero']) {                        
+                        var img = new Image();                        
+                        img.src = animate['hero'][i].src;
+                        animate['hero'][i].el = img;
+ }
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
@@ -103,7 +129,37 @@ function drawHero() {
         hero.y += hero.dy;
     }
 
-    context.drawImage(hero_icon, hero.x, hero.y);
+     if (hero.left_pressed) {
+	context.drawImage(animate['hero']['to_the_left'].el, 
+					Math.round(hero.radiusW*2*animate['hero']['to_the_left'].currentFrame), 0, 
+					hero.radiusW*2, hero.radiusH*2, 
+					hero.x, hero.y,
+					hero.radiusW*2, hero.radiusH*2);
+	if (animate['hero']['to_the_left'].currentFrame == animate['hero']['to_the_left'].frames) {
+        animate['hero']['to_the_left'].currentFrame = 0;
+     } else {
+        animate['hero']['to_the_left'].currentFrame++;
+     }
+	}
+	else if (hero.right_pressed) {
+		context.drawImage(animate['hero']['to_the_right'].el, 
+					Math.round(hero.radiusW*2*animate['hero']['to_the_right'].currentFrame), 0, 
+					hero.radiusW*2, hero.radiusH*2, 
+					hero.x, hero.y,
+					hero.radiusW*2, hero.radiusH*2);
+	if (animate['hero']['to_the_right'].currentFrame == animate['hero']['to_the_right'].frames) {
+        animate['hero']['to_the_right'].currentFrame = 0;
+     } else {
+        animate['hero']['to_the_right'].currentFrame++;
+     }
+	}
+	else {
+		context.drawImage(animate['hero']['stand'].el, 
+						0, 0,
+						hero.radiusW*2, hero.radiusH*2, 
+						hero.x, hero.y,
+						hero.radiusW*2, hero.radiusH*2);
+	}
 }
 
 let intervalID = setInterval(drawDungeon_1, speed);
