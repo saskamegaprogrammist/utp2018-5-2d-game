@@ -3,19 +3,27 @@
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
+const speed = 100;
+
 let hero = {
 
-    x: 350,
-    y: 350,
+    x: 300,
+    y: 600,
     radiusW: 24,
     radiusH: 32,
-    dx: 1.5,
-    dy: 1.5,
+    dx: 8,
+    dy: 8,
+
     right_pressed: false,
     left_pressed: false,
     up_pressed: false,
     down_pressed: false,
-    inventory: false
+
+    condition: false,
+
+    health_x1: 200,
+    health_y: 200,
+    health_x2: 500
 }
 
 const hero_icon = new Image();
@@ -44,9 +52,9 @@ function keyDownHandler(e) {
     }
 
 
-    //inventory
-    if (e.keyCode === 9) {
-        hero.inventory = true;
+    //condition
+    if (e.keyCode === 90) {
+        hero.condition = true;
     }
 }
 
@@ -69,9 +77,9 @@ function keyUpHandler(e) {
         hero.down_pressed = false;
     }
 
-    //inventory
-    if (e.keyCode === 9) {
-        hero.inventory = false;
+    //condition
+    if (e.keyCode === 90) {
+        hero.condition = false;
     }
 }
 
@@ -98,4 +106,4 @@ function drawHero() {
     context.drawImage(hero_icon, hero.x, hero.y);
 }
 
-let intervalID = setInterval(drawDungeon_1, 10);
+let intervalID = setInterval(drawDungeon_1, speed);
