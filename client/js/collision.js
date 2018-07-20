@@ -9,9 +9,17 @@ const barrier_walls_of_the_dungeon_1 = {
     height: 575
 }
 
+const town_of_the_dungeon_1 = {
+	x: 0,
+	y: 575,
+	width: 210,
+    height: 193
+}
+
 const barriers_of_the_dungeon_1 = [
 
-    barrier_walls_of_the_dungeon_1
+    barrier_walls_of_the_dungeon_1,
+    town_of_the_dungeon_1
 ]
 
 
@@ -179,12 +187,20 @@ const barrier_small_house = {
     height: 42
 }
 
-const barrier_armories = {
+const barrier_armories_1 = {
 
     x: 0,
     y: 425,
     width: 132,
-    height: 150
+    height: 15
+}
+
+const barrier_armories_2 = {
+
+    x: 0,
+    y: 440,
+    width: 64,
+    height: 125
 }
 
 const barrier_walls_1 = {
@@ -211,21 +227,38 @@ const barrier_walls_3 = {
     height: 105
 }
 
-const barrier_market = {
+const barrier_market_1 = {
 
     x: 0,
     y: 0,
     width: 132,
-    height: 258
+    height: 191
 }
 
-const barrier_tavern_1 = {
+const barrier_market_2 = {
+
+    x: 0,
+    y: 191,
+    width:62,
+    height: 67
+}
+
+const barrier_tavern_0 = {
 
     x: 600,
     y: 225,
     width: 188,
-    height: 130
+    height: 96
 }
+
+const barrier_tavern_1 = {
+
+    x: 640,
+    y: 320,
+    width: 132,
+    height: 70
+}
+
 
 const barrier_tavern_2 = {
 
@@ -259,11 +292,14 @@ const barriers_of_the_town = [
     barrier_down_forest_2,
     barrier_farm,
     barrier_small_house,
-    barrier_armories,
+    barrier_armories_1,
+    barrier_armories_2,
     barrier_walls_1,
     barrier_walls_2,
     barrier_walls_3,
-    barrier_market,
+    barrier_market_1,
+	barrier_market_2,
+    barrier_tavern_0,
     barrier_tavern_1,
     barrier_tavern_2,
     barrier_tavern_3,
