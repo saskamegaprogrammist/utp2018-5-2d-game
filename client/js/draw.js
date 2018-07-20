@@ -2,7 +2,7 @@
 
 //dungeon_1
 const dungeon_image_1 = new Image();
-dungeon_image_1.src = "../design/map/dungeon-1-tree.png";
+dungeon_image_1.src = "../design/map/dungeon-1.png";
 
 function drawDungeon_1() {
 
