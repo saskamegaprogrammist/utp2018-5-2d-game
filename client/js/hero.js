@@ -55,7 +55,7 @@ animate['hero'] = {
 	}		
 };
     
- for (var i in animate['hero']) {                        
+ for (let i in animate['hero']) {                        
                         var img = new Image();                        
                         img.src = animate['hero'][i].src;
                         animate['hero'][i].el = img;
