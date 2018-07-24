@@ -9,6 +9,6 @@ if (localStorage.getItem("inventory") !== null)
 	inventory = localStorage.getItem("inventory"); 
 else
 	for (i = 0 ; i < 10 ; i++) {
-		elementOfInventory = new Loot("blade" + i.toString(),"bron");
+		elementOfInventory = new Loot("blade" + i.toString(),"blade");
 		inventory[i] = elementOfInventory;
 	}
