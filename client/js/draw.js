@@ -17,6 +17,7 @@ function drawDungeon_1() {
         return;
     }
 
+    hero.location = "Dungeon_1";
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(dungeon_image_1, 0, 0);
     drawHero();
@@ -30,19 +31,6 @@ function drawDungeon_1() {
 
     collision(barriers_of_the_dungeon_1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -72,10 +60,11 @@ function drawDungeon_2() {
         return;
     }
 
+    hero.location = "Dungeon_2";
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(dungeon_image_2, 0, 0);
     drawHero();
-
+    drawConditionOfHero();
     /* context.beginPath();
     context.rect(648, 763, 48, 5);
     context.fillStyle = "red";
@@ -84,23 +73,6 @@ function drawDungeon_2() {
 
     collision(barriers_of_the_dungeon_2);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //dungeon_3
 const dungeon_image_3 = new Image();
@@ -127,11 +99,11 @@ function drawDungeon_3() {
         intervalID = setInterval(drawDungeon_2, speed);
         return;
     }
-
+    hero.location = "Dungeon_3";
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(dungeon_image_3, 0, 0);
     drawHero();
-
+    drawConditionOfHero();
     /*  context.beginPath();
      context.rect(763, 648, 5, 48);
      context.fillStyle = "red";
@@ -140,20 +112,6 @@ function drawDungeon_3() {
 
     collision(barriers_of_the_dungeon_3);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //dungeon_4
@@ -181,11 +139,11 @@ function drawDungeon_4() {
         intervalID = setInterval(drawDungeon_3, speed);
         return;
     }
-
+    hero.location = "Dungeon_4";
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(dungeon_image_4, 0, 0);
     drawHero();
-
+    drawConditionOfHero();
     /* context.beginPath();
     context.rect(763, 520, 5, 48);
     context.fillStyle = "red";
@@ -194,18 +152,6 @@ function drawDungeon_4() {
 
     collision(barriers_of_the_dungeon_4);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //town
@@ -227,7 +173,7 @@ function drawTown() {
         intervalID = setInterval(drawDungeon_4, speed);
         return;
     }
-
+    hero.location = "Town";
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(town_image, 0, 0);
 
@@ -243,7 +189,7 @@ function drawTown() {
     }
 
     context.drawImage(decoration, 0, 0);
-
+    drawConditionOfHero();
     /* context.beginPath();
     context.rect(630, 690, 5, 70);
     context.fillStyle = "red";
@@ -254,54 +200,28 @@ function drawTown() {
 }
 
 
-
-
-
-
-
-
-
 ///////////////////////////////////////////
-
-
-
-
-
-
 
 
 //condition of hero
 function drawConditionOfHero() {
 
     if (hero.condition) {
-        
         drawInventory();
         drawHealth();
+       
     }
 }
 
 
-
-
-
-
-
-
 //inventory
 const inventory_image = new Image();
-inventory_image.src = "../design/inventory/inventory_test.png";
-
+inventory_image.src = "../design/hero/inventory_test.png";
+/*
 function drawInventory() {
-
-    context.drawImage(inventory_image, 0, 500);
+    
 }
-
-
-
-
-
-
-
+*/
 
 
 //health
@@ -320,11 +240,12 @@ function drawHealth() {
 
 
 
+const inventory_blade = new Image();
+inventory_blade.src = "../design/hero/bladeForInventory.png";
 
 
-/*
+
 const cell_for_inventory = {
-
     width: 150,
     height: 150,
     rowCount: 3,
@@ -333,18 +254,14 @@ const cell_for_inventory = {
     offsetTop: 250,
     offsetLeft: 30
 }
-
 const table_for_inventory = []
 for (let i = 0; i < cell_for_inventory.columnCount; i++) {
-
     table_for_inventory[i] = []
     for (let j = 0; j < cell_for_inventory.rowCount; j++) {
-
         table_for_inventory[i][j] = {
             x: i * (cell_for_inventory.width +
                 cell_for_inventory.padding) +
                 cell_for_inventory.offsetLeft,
-
             y: j * (cell_for_inventory.height +
                 cell_for_inventory.padding) +
                 cell_for_inventory.offsetTop
@@ -353,10 +270,8 @@ for (let i = 0; i < cell_for_inventory.columnCount; i++) {
 }
 
 function grid() {
-
     for (let i = 0; i < cell_for_inventory.columnCount; i++) {
         for (let j = 0; j < cell_for_inventory.rowCount; j++) {
-
             context.beginPath();
             context.rect(
                 
@@ -365,19 +280,35 @@ function grid() {
                 cell_for_inventory.width,
                 cell_for_inventory.height
             );
-
             context.strokeStyle = "red";
             context.lineWidth = 7;
             context.stroke();
+            if(inventory[i * cell_for_inventory.columnCount + j].type == "blade") {
+            context.drawImage(inventory_blade,
+                table_for_inventory[i][j].x,
+                table_for_inventory[i][j].y,
+                cell_for_inventory.width,
+                cell_for_inventory.height);
+            }
             context.closePath();
         }
     }
+    context.beginPath();
+    context.rect( cell_for_inventory.width * cell_for_inventory.rowCount +  cell_for_inventory.padding * (cell_for_inventory.rowCount - 1) + 75, 
+        cell_for_inventory.offsetTop,
+        cell_for_inventory.width,
+        cell_for_inventory.height * cell_for_inventory.columnCount + cell_for_inventory.padding * (cell_for_inventory.columnCount-1));
+    context.strokeStyle = "green";
+    context.lineWidth = 7;
+    context.stroke();
+    context.closePath();
+
 }
 
 function drawInventory() {
-
-    if (hero.inventory) {
+    if (isInventory) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(inventory_image, 0, 0);
         grid();
     }
 }
-*/
