@@ -2,13 +2,35 @@
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-
+let isInventory = false;
 const speed = 10;
+let localx;
+let localy;
+let localLocation;
+if (localStorage.getItem("localx") !== null) {
+	localx = parseInt(localStorage.getItem("localx"));
+}
+else {
+	localx = 256;
+}
 
+if (localStorage.getItem("localy") !== null) {
+	localy = parseInt(localStorage.getItem("localy"));
+}
+else {
+	localy = 640;
+}
+if (localStorage.getItem("localLocation") !== null) {
+	localLocation = localStorage.getItem("localLocation");
+}
+else {
+	localLocation = "Dungeon_1";
+}
 let hero = {
 
-    x: 256,
-    y: 640,
+    x: localx,
+    y: localy,
+    location : localLocation,
     radiusW: 21.5,
     radiusH: 32,
     dx: 1,
@@ -67,26 +89,33 @@ document.addEventListener("keyup", keyUpHandler, false);
 function keyDownHandler(e) {
 
     //movement
-    if ((e.keyCode === 39) || (e.keyCode === 68)) {
-        hero.right_pressed = true;
-    }
-    
-    if ((e.keyCode === 37) || (e.keyCode === 65)) {
-        hero.left_pressed = true;
-    }
-    
-    if ((e.keyCode === 38) || (e.keyCode === 87)) {
-        hero.up_pressed = true;
-    }
-    
-    if ((e.keyCode === 40) || (e.keyCode === 83)) {
-        hero.down_pressed = true;
-    }
-
-
+    if (!isInventory) {
+	    if ((e.keyCode === 39) || (e.keyCode === 68)) {
+	        hero.right_pressed = true;
+	    }
+	    
+	    if ((e.keyCode === 37) || (e.keyCode === 65)) {
+	        hero.left_pressed = true;
+	    }
+	    
+	    if ((e.keyCode === 38) || (e.keyCode === 87)) {
+	        hero.up_pressed = true;
+	    }
+	    
+	    if ((e.keyCode === 40) || (e.keyCode === 83)) {
+	        hero.down_pressed = true;
+	    }
+	}
     //condition
     if (e.keyCode === 90) {
+    	if (isInventory) {
+    		hero.condition = false
+    		isInventory = false;
+    	} else {
         hero.condition = true;
+        isInventory = true;
+    	}
+
     }
 }
 
@@ -110,13 +139,12 @@ function keyUpHandler(e) {
     }
 
     //condition
-    if (e.keyCode === 90) {
+   /* if (e.keyCode === 90) {
         hero.condition = false;
-    }
+    }*/
 }
 
 function drawHero() {
-
     if (hero.left_pressed &&
         (hero.x > 0)) {
 
@@ -175,6 +203,22 @@ function drawHero() {
 						hero.x, hero.y,
 						hero.radiusW*2, hero.radiusH*2);
 	}
+	localStorage.setItem("localx",hero.x.toString());
+	localStorage.setItem("localy",hero.y.toString());
+	localStorage.setItem("localLocation",hero.location);
 }
-
-let intervalID = setInterval(drawDungeon_1, speed);
+let intervalID;
+if (hero.location == "Dungeon_1")
+	intervalID = setInterval(drawDungeon_1, speed);
+else
+	if (hero.location == "Dungeon_2")
+		intervalID = setInterval(drawDungeon_2, speed);
+	else
+		if (hero.location == "Dungeon_3")
+			intervalID = setInterval(drawDungeon_3, speed);
+		else
+			if (hero.location == "Dungeon_4")
+				intervalID = setInterval(drawDungeon_4, speed);
+			else
+				if (hero.location == "Town")
+					intervalID = setInterval(drawTown, speed);
