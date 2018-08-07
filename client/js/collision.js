@@ -7,20 +7,21 @@ const barrier_walls_of_the_dungeon_1 = {
     y: 0,
     width: 575,
     height: 575
-}
+};
 
 const town_of_the_dungeon_1 = {
-	x: 0,
-	y: 575,
-	width: 210,
+
+    x: 0,
+    y: 575,
+    width: 210,
     height: 193
-}
+};
 
 const barriers_of_the_dungeon_1 = [
 
     barrier_walls_of_the_dungeon_1,
     town_of_the_dungeon_1
-]
+];
 
 
 
@@ -38,12 +39,12 @@ const barrier_walls_of_the_dungeon_2 = {
     y: 0,
     width: 127,
     height: 485
-}
+};
 
 const barriers_of_the_dungeon_2 = [
 
     barrier_walls_of_the_dungeon_2
-]
+];
 
 
 
@@ -61,7 +62,7 @@ const barrier_walls_of_the_dungeon_3_1 = {
     y: 0,
     width: 135,
     height: 230
-}
+};
 
 const barrier_walls_of_the_dungeon_3_2 = {
 
@@ -69,7 +70,7 @@ const barrier_walls_of_the_dungeon_3_2 = {
     y: 700,
     width: 325,
     height: 68
-}
+};
 
 const barrier_walls_of_the_dungeon_3_3 = {
 
@@ -77,14 +78,14 @@ const barrier_walls_of_the_dungeon_3_3 = {
     y: 0,
     width: 68,
     height: 485
-}
+};
 
 const barriers_of_the_dungeon_3 = [
 
     barrier_walls_of_the_dungeon_3_1,
     barrier_walls_of_the_dungeon_3_2,
     barrier_walls_of_the_dungeon_3_3
-]
+];
 
 
 
@@ -101,7 +102,7 @@ const barrier_walls_of_the_dungeon_4_1 = {
     y: 130,
     width: 60,
     height: 158
-}
+};
 
 const barrier_walls_of_the_dungeon_4_2 = {
 
@@ -109,7 +110,7 @@ const barrier_walls_of_the_dungeon_4_2 = {
     y: 130,
     width: 170,
     height: 158
-}
+};
 
 const barrier_walls_of_the_dungeon_4_3 = {
 
@@ -117,7 +118,7 @@ const barrier_walls_of_the_dungeon_4_3 = {
     y: 0,
     width: 443,
     height: 220
-}
+};
 
 const barrier_walls_of_the_dungeon_4_4 = {
 
@@ -125,7 +126,7 @@ const barrier_walls_of_the_dungeon_4_4 = {
     y: 700,
     width: 768,
     height: 5
-}
+};
 
 const barriers_of_the_dungeon_4 = [
 
@@ -133,7 +134,7 @@ const barriers_of_the_dungeon_4 = [
     barrier_walls_of_the_dungeon_4_2,
     barrier_walls_of_the_dungeon_4_3,
     barrier_walls_of_the_dungeon_4_4
-]
+];
 
 
 
@@ -145,7 +146,7 @@ const barrier_start = {
     y: 690,
     width: 5,
     height: 70
-}
+};
 
 const barrier_right_forest = {
 
@@ -153,7 +154,7 @@ const barrier_right_forest = {
     y: 470,
     width: 258,
     height: 76
-}
+};
 
 const barrier_down_forest_1 = {
 
@@ -161,7 +162,7 @@ const barrier_down_forest_1 = {
     y: 655,
     width: 180,
     height: 133
-}
+};
 
 const barrier_down_forest_2 = {
 
@@ -169,7 +170,7 @@ const barrier_down_forest_2 = {
     y: 500,
     width: 25,
     height: 150
-}
+};
 
 const barrier_farm = {
 
@@ -177,7 +178,7 @@ const barrier_farm = {
     y: 510,
     width: 192,
     height: 258
-}
+};
 
 const barrier_small_house = {
 
@@ -185,7 +186,7 @@ const barrier_small_house = {
     y: 510,
     width: 127,
     height: 42
-}
+};
 
 const barrier_armories_1 = {
 
@@ -193,7 +194,7 @@ const barrier_armories_1 = {
     y: 425,
     width: 132,
     height: 15
-}
+};
 
 const barrier_armories_2 = {
 
@@ -201,7 +202,7 @@ const barrier_armories_2 = {
     y: 440,
     width: 64,
     height: 125
-}
+};
 
 const barrier_walls_1 = {
 
@@ -209,7 +210,7 @@ const barrier_walls_1 = {
     y: 100,
     width: 80,
     height: 50
-}
+};
 
 const barrier_walls_2 = {
 
@@ -217,7 +218,7 @@ const barrier_walls_2 = {
     y: 0,
     width: 205,
     height: 105
-}
+};
 
 const barrier_walls_3 = {
 
@@ -225,7 +226,7 @@ const barrier_walls_3 = {
     y: 0,
     width: 368,
     height: 105
-}
+};
 
 const barrier_market_1 = {
 
@@ -233,15 +234,15 @@ const barrier_market_1 = {
     y: 0,
     width: 132,
     height: 191
-}
+};
 
 const barrier_market_2 = {
 
     x: 0,
     y: 191,
-    width:62,
+    width: 62,
     height: 67
-}
+};
 
 const barrier_tavern_0 = {
 
@@ -249,7 +250,7 @@ const barrier_tavern_0 = {
     y: 225,
     width: 188,
     height: 96
-}
+};
 
 const barrier_tavern_1 = {
 
@@ -257,7 +258,7 @@ const barrier_tavern_1 = {
     y: 320,
     width: 132,
     height: 70
-}
+};
 
 
 const barrier_tavern_2 = {
@@ -266,7 +267,7 @@ const barrier_tavern_2 = {
     y: 225,
     width: 188,
     height: 5
-}
+};
 
 const barrier_tavern_3 = {
 
@@ -274,7 +275,7 @@ const barrier_tavern_3 = {
     y: 305,
     width: 60,
     height: 5
-}
+};
 
 const barrier_tavern_4 = {
 
@@ -282,7 +283,7 @@ const barrier_tavern_4 = {
     y: 305,
     width: 5,
     height: 55
-}
+};
 
 const barriers_of_the_town = [
 
@@ -298,13 +299,13 @@ const barriers_of_the_town = [
     barrier_walls_2,
     barrier_walls_3,
     barrier_market_1,
-	barrier_market_2,
+    barrier_market_2,
     barrier_tavern_0,
     barrier_tavern_1,
     barrier_tavern_2,
     barrier_tavern_3,
     barrier_tavern_4
-]
+];
 
 
 function collision(barriers) {
@@ -331,7 +332,7 @@ function collision(barriers) {
                 (barriers[i].x + barriers[i].width - 5)) {
 
                 hero.x += hero.dx;
-            } else if (hero.x + 2 * hero.radiusW < barriers[i].x + 10) {
+            } else if (hero.x + 2 * hero.radiusW < barriers[i].x + 5) {
 
                 hero.x -= hero.dx;
             } else if (hero.y <
@@ -364,7 +365,7 @@ const barrier_fence = {
     y2: 603,
     width2: 75,
     height2: 5
-}
+};
 
 const fence = new Image();
 fence.src = "../design/map/fence.png";
@@ -421,7 +422,7 @@ const dungeon_2_from_dungeon_1 = {
     y: 0,
     width: 48,
     height: 5
-}
+};
 
 const dungeon_1_from_dungeon_2 = {
 
@@ -429,7 +430,7 @@ const dungeon_1_from_dungeon_2 = {
     y: 763,
     width: 48,
     height: 5
-}
+};
 
 const dungeon_2_from_dungeon_3 = {
 
@@ -437,7 +438,7 @@ const dungeon_2_from_dungeon_3 = {
     y: 648,
     width: 5,
     height: 48
-}
+};
 
 const dungeon_3_from_dungeon_2 = {
 
@@ -445,7 +446,7 @@ const dungeon_3_from_dungeon_2 = {
     y: 648,
     width: 5,
     height: 48
-}
+};
 
 const dungeon_3_from_dungeon_4 = {
 
@@ -453,7 +454,7 @@ const dungeon_3_from_dungeon_4 = {
     y: 520,
     width: 5,
     height: 48
-}
+};
 
 const dungeon_4_from_dungeon_3 = {
 
@@ -461,7 +462,7 @@ const dungeon_4_from_dungeon_3 = {
     y: 520,
     width: 5,
     height: 48
-}
+};
 
 const dungeon_4_from_town = {
 
@@ -469,7 +470,7 @@ const dungeon_4_from_town = {
     y: 740,
     width: 30,
     height: 5
-}
+};
 
 const town = {
 
@@ -477,7 +478,7 @@ const town = {
     y: 0,
     width: 48,
     height: 5
-}
+};
 
 function transition(trans) {
 
@@ -520,4 +521,99 @@ function dungeon_4_from_town_transition() {
 
 function town_transition() {
     return transition(town);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//things in inventory
+const item_test_1_image = new Image();
+item_test_1_image.src = "../design/hero/danger.png";
+const test_1 = {
+
+    type: "item",
+    x: 600,
+    y: 600,
+    width: 57,
+    height: 64,
+    status: 1,
+    image: item_test_1_image
+};
+
+const item_test_2_image = new Image();
+item_test_2_image.src = "../design/hero/hero.png";
+const test_2 = {
+
+    type: "item",
+    x: 650,
+    y: 300,
+    width: 61,
+    height: 64,
+    status: 1,
+    image: item_test_2_image
+};
+
+const things_of_the_dungeon_1 = [
+    
+    test_1,
+    test_2
+];
+
+function interactionWithItems(things) {
+
+    let distX = 0;
+    let distY = 0;
+    const len = things.length;
+
+    for (let i = 0; i < len; i++) {
+
+        if (things[i].status === 1) {
+
+            distX = Math.abs(hero.x + hero.radiusW -
+                things[i].x - things[i].width / 2);
+            distY = Math.abs(hero.y + hero.radiusH -
+                things[i].y - things[i].height / 2);
+
+            if ((distX <= (things[i].width / 2) + hero.radiusW) &&
+                (distY <= (things[i].height / 2) + hero.radiusH)) {
+
+                if (hero.interaction) {
+
+                    inventory.slots.splice(inventory.slots.length, 0, things[i]);
+                    things[i].status = 0;
+                }
+
+                if (hero.y + 2 * hero.radiusH <
+                    (things[i].y + 5)) {
+
+                    hero.y -= hero.dy;
+                } else if (hero.x >
+                    (things[i].x + things[i].width - 5)) {
+
+                    hero.x += hero.dx;
+                } else if (hero.x + 2 * hero.radiusW < things[i].x + 5) {
+
+                    hero.x -= hero.dx;
+                } else if (hero.y <
+                    things[i].y + things[i].height) {
+
+                    hero.y += hero.dy;
+                }
+            }
+        }
+    }
 }

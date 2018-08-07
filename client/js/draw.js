@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 //dungeon_1
 const dungeon_image_1 = new Image();
@@ -17,20 +17,48 @@ function drawDungeon_1() {
         return;
     }
 
-    hero.location = "Dungeon_1";
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(dungeon_image_1, 0, 0);
+    context_main.clearRect(0, 0, canvas_main.width, canvas_main.height);
+    context_main.drawImage(dungeon_image_1, 0, 0);
     drawHero();
+    draw_items_from_dungeon_1();
+    interactionWithItems(things_of_the_dungeon_1);
     drawConditionOfHero();
 
-    /* context.beginPath();
-    context.rect(648, 0, 48, 5);
-    context.fillStyle = "red";
-    context.fill();
-    context.closePath(); */
+    /* context_main.beginPath();
+    context_main.rect(648, 600, 50, 50);
+    context_main.fillStyle = "red";
+    context_main.fill();
+    context_main.closePath(); */
 
     collision(barriers_of_the_dungeon_1);
 }
+
+
+
+
+function draw_items_from_dungeon_1() {
+
+    if (test_1.status === 1) {
+        context_main.drawImage(test_1.image, test_1.x, test_1.y);
+    }
+
+    if (test_2.status === 1) {
+        context_main.drawImage(item_test_2_image, test_2.x, test_2.y);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -60,11 +88,11 @@ function drawDungeon_2() {
         return;
     }
 
-    hero.location = "Dungeon_2";
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(dungeon_image_2, 0, 0);
+    context_main.clearRect(0, 0, canvas_main.width, canvas_main.height);
+    context_main.drawImage(dungeon_image_2, 0, 0);
     drawHero();
     drawConditionOfHero();
+
     /* context.beginPath();
     context.rect(648, 763, 48, 5);
     context.fillStyle = "red";
@@ -73,6 +101,23 @@ function drawDungeon_2() {
 
     collision(barriers_of_the_dungeon_2);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //dungeon_3
 const dungeon_image_3 = new Image();
@@ -99,11 +144,12 @@ function drawDungeon_3() {
         intervalID = setInterval(drawDungeon_2, speed);
         return;
     }
-    hero.location = "Dungeon_3";
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(dungeon_image_3, 0, 0);
+
+    context_main.clearRect(0, 0, canvas_main.width, canvas_main.height);
+    context_main.drawImage(dungeon_image_3, 0, 0);
     drawHero();
     drawConditionOfHero();
+
     /*  context.beginPath();
      context.rect(763, 648, 5, 48);
      context.fillStyle = "red";
@@ -112,6 +158,20 @@ function drawDungeon_3() {
 
     collision(barriers_of_the_dungeon_3);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //dungeon_4
@@ -139,11 +199,12 @@ function drawDungeon_4() {
         intervalID = setInterval(drawDungeon_3, speed);
         return;
     }
-    hero.location = "Dungeon_4";
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(dungeon_image_4, 0, 0);
+
+    context_main.clearRect(0, 0, canvas_main.width, canvas_main.height);
+    context_main.drawImage(dungeon_image_4, 0, 0);
     drawHero();
     drawConditionOfHero();
+
     /* context.beginPath();
     context.rect(763, 520, 5, 48);
     context.fillStyle = "red";
@@ -152,6 +213,18 @@ function drawDungeon_4() {
 
     collision(barriers_of_the_dungeon_4);
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //town
@@ -173,23 +246,24 @@ function drawTown() {
         intervalID = setInterval(drawDungeon_4, speed);
         return;
     }
-    hero.location = "Town";
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(town_image, 0, 0);
+
+    context_main.clearRect(0, 0, canvas_main.width, canvas_main.height);
+    context_main.drawImage(town_image, 0, 0);
 
     const fence_bool = collision_with_fence_in_the_town();
     if (fence_bool === "under") {
 
         drawHero();
-        context.drawImage(fence, 192, 595);
+        context_main.drawImage(fence, 192, 595);
     } else {
 
-        context.drawImage(fence, 192, 595);
+        context_main.drawImage(fence, 192, 595);
         drawHero();
     }
 
-    context.drawImage(decoration, 0, 0);
     drawConditionOfHero();
+    context_main.drawImage(decoration, 0, 0);
+
     /* context.beginPath();
     context.rect(630, 690, 5, 70);
     context.fillStyle = "red";
@@ -200,115 +274,124 @@ function drawTown() {
 }
 
 
+
+
+
+
+
+
+
 ///////////////////////////////////////////
 
 
-//condition of hero
+
+
+
+//condition_of_hero
+const inventory_image = new Image();
+inventory_image.src = "../design/inventory/inventory_test.png";
+
 function drawConditionOfHero() {
 
     if (hero.condition) {
+
         drawInventory();
         drawHealth();
-       
+    } else {
+
+        context_condition.clearRect(0, 0, canvas_condition.width, canvas_condition.height);
     }
 }
 
-
-//inventory
-const inventory_image = new Image();
-inventory_image.src = "../design/hero/inventory_test.png";
-/*
 function drawInventory() {
-    
+
+    context_condition.clearRect(0, 0, canvas_condition.width, canvas_condition.height);
+    context_condition.drawImage(inventory_image, inventory.x, inventory.y);
+
+    const len = inventory.slots.length;
+    let bool_size = false;
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 8; j++) {
+
+            const index = i * 8 + j;
+
+            if (index === len) {
+
+                bool_size = true;
+                break;
+            }
+
+            if ((inventory.slots[index] === selected) &&
+                bool_pop_up_window) {
+
+                selected.x = mouse.x - selected.width / 2;
+                selected.y = mouse.y - selected.height / 2;
+                context_condition.drawImage(selected.image, selected.x, selected.y);
+
+            } else {
+
+                inventory.slots[index].x = 130 + j * 64;
+                inventory.slots[index].y = 325 + i * 64;
+
+                context_condition.drawImage(inventory.slots[index].image, inventory.slots[index].x, inventory.slots[index].y);
+            }
+        }
+
+        if (bool_size) {
+            break;
+        }
+    }
 }
-*/
+
+const is_throw_away_image = new Image();
+is_throw_away_image.src = "../design/inventory/is_throw_away.png";
+
+const is_throw_away = {
+
+    x: 127.5,
+    y: 309,
+    width: 313,
+    height: 150,
+    bool: false,
+    image: is_throw_away_image
+}
+
 
 
 //health
 function drawHealth() {
 
-    context.beginPath();
-    context.lineWidth = 30;
-    context.moveTo(hero.health_x1, hero.health_y);
-    context.lineTo(hero.health_x2, hero.health_y);
-    context.strokeStyle = "red";
-    context.lineCap = "round";
-    context.stroke();
-    context.closePath();
+    context_condition.beginPath();
+    context_condition.lineWidth = 30;
+    context_condition.moveTo(hero.health_x1, hero.health_y);
+    context_condition.lineTo(hero.health_x2, hero.health_y);
+    context_condition.strokeStyle = "red";
+    context_condition.lineCap = "round";
+    context_condition.stroke();
+    context_condition.closePath();
 }
 
 
 
 
-const inventory_blade = new Image();
-inventory_blade.src = "../design/hero/bladeForInventory.png";
 
 
 
-const cell_for_inventory = {
-    width: 150,
-    height: 150,
-    rowCount: 3,
-    columnCount: 3,
-    padding: 20,
-    offsetTop: 250,
-    offsetLeft: 30
-}
-const table_for_inventory = []
-for (let i = 0; i < cell_for_inventory.columnCount; i++) {
-    table_for_inventory[i] = []
-    for (let j = 0; j < cell_for_inventory.rowCount; j++) {
-        table_for_inventory[i][j] = {
-            x: i * (cell_for_inventory.width +
-                cell_for_inventory.padding) +
-                cell_for_inventory.offsetLeft,
-            y: j * (cell_for_inventory.height +
-                cell_for_inventory.padding) +
-                cell_for_inventory.offsetTop
-        }
-    }
+
+
+
+
+
+//pop_up_windows
+const canvas_pop_up_window = document.getElementById("pop_up_window");
+const context_pop_up_window = canvas_pop_up_window.getContext("2d");
+
+
+function drawIsThrowAway() {
+    
+    context_pop_up_window.clearRect(0, 0, context_pop_up_window.width, context_pop_up_window.height);
+    context_pop_up_window.drawImage(is_throw_away.image, is_throw_away.x + inventory.x, is_throw_away.y);
+    is_throw_away.bool = true;
 }
 
-function grid() {
-    for (let i = 0; i < cell_for_inventory.columnCount; i++) {
-        for (let j = 0; j < cell_for_inventory.rowCount; j++) {
-            context.beginPath();
-            context.rect(
-                
-                table_for_inventory[i][j].x,
-                table_for_inventory[i][j].y,
-                cell_for_inventory.width,
-                cell_for_inventory.height
-            );
-            context.strokeStyle = "red";
-            context.lineWidth = 7;
-            context.stroke();
-            if(inventory[i * cell_for_inventory.columnCount + j].type == "blade") {
-            context.drawImage(inventory_blade,
-                table_for_inventory[i][j].x,
-                table_for_inventory[i][j].y,
-                cell_for_inventory.width,
-                cell_for_inventory.height);
-            }
-            context.closePath();
-        }
-    }
-    context.beginPath();
-    context.rect( cell_for_inventory.width * cell_for_inventory.rowCount +  cell_for_inventory.padding * (cell_for_inventory.rowCount - 1) + 75, 
-        cell_for_inventory.offsetTop,
-        cell_for_inventory.width,
-        cell_for_inventory.height * cell_for_inventory.columnCount + cell_for_inventory.padding * (cell_for_inventory.columnCount-1));
-    context.strokeStyle = "green";
-    context.lineWidth = 7;
-    context.stroke();
-    context.closePath();
 
-}
-
-function drawInventory() {
-    if (isInventory) {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(inventory_image, 0, 0);
-        grid();
-    }
-}
